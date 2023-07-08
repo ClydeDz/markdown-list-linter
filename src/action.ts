@@ -4,7 +4,6 @@ import {
     setOutput,
     setFailed,
     info,
-    debug,
     warning,
     getBooleanInput,
   } from "@actions/core";
@@ -12,7 +11,6 @@ import {
 async function runMarkdownListLinterAction(): Promise<void> {
     const markdownFile = getInput("file")
     const failOnError = getBooleanInput("fail-on-error")
-    debug('outputBuilder1')
 
     if(!markdownFile) {
         setFailed("Markdown file not provided")
@@ -21,25 +19,7 @@ async function runMarkdownListLinterAction(): Promise<void> {
 
     const result = lintMarkdownList(markdownFile)
 
-    let outputBuilder = ''  
-    outputBuilder += 'SUMMARY:\n' + result.summary + '\n'  
-    result.errorObject ? outputBuilder += '\nDETAILS:\n' : undefined
-
-    result.errorObject?.forEach(error => {
-        outputBuilder += error.message + '\n'
-        
-        error.details.forEach((errorSections, index) => {      
-        outputBuilder +=  '\tSection #' + (index + 1) + '\n'
-
-        errorSections.forEach(errorItem => {
-            outputBuilder +=  '\t\t' + errorItem + '\n'
-        })
-
-        outputBuilder += '\n'
-        })
-    })
-
-    info(outputBuilder)    
+    info(result.formattedMessage || '')    
     setOutput("name", "markdown-list-linter");
     setOutput("summary", result.summary);
     setOutput("errors", result.errorObject);    
