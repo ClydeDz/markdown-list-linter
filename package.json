@@ -5,6 +5,8 @@
   "scripts": {
     "pretty": "prettier --check .",
     "pretty:fix": "prettier --write .",
+    "lint": "eslint . -c .eslintrc.js",
+    "lint:fix": "eslint . -c .eslintrc.js --fix",
     "compile": "tsc --project tsconfig.json",
     "minify": "esbuild \"bin/action.js\" --bundle --platform=node --outfile=\"action.js\"",
     "build": "npm run compile && npm run minify",
@@ -17,6 +19,8 @@
     "markdown-list-linter": "0.1.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.22.7",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
     "esbuild": "^0.18.11",
     "prettier": "^3.0.0",
     "typescript": "^5.1.6"

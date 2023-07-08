@@ -1,0 +1,10 @@
+# Ignore folders:
+
+build
+coverage
+node_modules
+bin
+
+# Ignore files:
+
+action.js
