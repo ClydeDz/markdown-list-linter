@@ -13,7 +13,7 @@ inputs:
   fail-on-error:
     description: >
       Set this to false so that the action doesn't cause the workflow to fail if it spots lint issues.
-      When set to false, it only produces a warning. 
+      When set to false, it only produces a warning.
     default: true
 
 outputs:

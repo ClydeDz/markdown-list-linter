@@ -3,6 +3,8 @@
   "version": "0.1.1",
   "description": "GitHub action to lint markdown lists and warn when list items are not alphabetically ordered",
   "scripts": {
+    "pretty": "prettier --check .",
+    "pretty:fix": "prettier --write .",
     "compile": "tsc --project tsconfig.json",
     "minify": "esbuild \"bin/action.js\" --bundle --platform=node --outfile=\"action.js\"",
     "build": "npm run compile && npm run minify",
@@ -16,6 +18,7 @@
   },
   "devDependencies": {
     "esbuild": "^0.18.11",
+    "prettier": "^3.0.0",
     "typescript": "^5.1.6"
   }
 }

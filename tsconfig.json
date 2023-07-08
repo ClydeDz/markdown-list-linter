@@ -1,13 +1,13 @@
 {
-    "compilerOptions": {
-      "sourceMap": false,
-      "esModuleInterop": true,
-      "moduleResolution": "node",
-      "outDir": "bin",
-      "target": "es2021", 
-      "module": "commonjs",
-      "strict": true, 
-    }, 
-    "include": ["src/**/*"],
-    "exclude": ["!src/**/*"]
-  }
+  "compilerOptions": {
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "bin",
+    "target": "es2021",
+    "module": "commonjs",
+    "strict": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["!src/**/*"]
+}

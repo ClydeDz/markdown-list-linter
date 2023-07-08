@@ -1,4 +1,4 @@
-name: "Build and commit action"
+name: 'Build and commit action'
 
 on:
   push:
@@ -17,36 +17,36 @@ on:
 jobs:
   build_publish:
     name: Build and commit action
-    runs-on: ubuntu-latest    
-    
-    steps:      
-    - name: Checkout code
-      uses: actions/checkout@v3
-    
-    - name: Install Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 18.x
-    
-    - name: Install dependencies
-      run: npm ci
+    runs-on: ubuntu-latest
 
-    - name: Build action
-      run: npm run build
-    
-    - name: Commit the compiled action file
-      uses: actions-x/commit@v6
-      if: |
-        success() &&
-        github.ref == 'refs/heads/main'
-      with:
-        branch: main
-        files: action.js
-        force: true
-        email: 13506613+ClydeDz@users.noreply.github.com
-        name: GitHub Actions Autocommitter
-    
-    - name: Upload compiled action file as an artifact
-      uses: actions/upload-artifact@v3
-      with:
-        path: action.js
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build action
+        run: npm run build
+
+      - name: Commit the compiled action file
+        uses: actions-x/commit@v6
+        if: |
+          success() &&
+          github.ref == 'refs/heads/main'
+        with:
+          branch: main
+          files: action.js
+          force: true
+          email: 13506613+ClydeDz@users.noreply.github.com
+          name: GitHub Actions Autocommitter
+
+      - name: Upload compiled action file as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: action.js
