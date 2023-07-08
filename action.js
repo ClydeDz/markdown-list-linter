@@ -37,18 +37,18 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var require_markdown_list_linter_min = __commonJS({
   "node_modules/markdown-list-linter/lib/markdown-list-linter.min.js"(exports2) {
     "use strict";
-    var c = (t, e) => () => (e || t((e = { exports: {} }).exports, e), e.exports);
-    var p = c((u) => {
+    var l = (t, e) => () => (e || t((e = { exports: {} }).exports, e), e.exports);
+    var p = l((u) => {
       "use strict";
       Object.defineProperty(u, "__esModule", { value: true });
       u.MarkdownListType = void 0;
-      var m;
+      var O;
       (function(t) {
         t.Headings = "HEADINGS", t.ListItems = "LIST_ITEMS";
-      })(m || (u.MarkdownListType = m = {}));
+      })(O || (u.MarkdownListType = O = {}));
     });
-    var S = c((I, O) => {
-      function H(t) {
+    var h = l((I, S) => {
+      function P(t) {
         try {
           JSON.parse(t);
         } catch {
@@ -56,10 +56,10 @@ var require_markdown_list_linter_min = __commonJS({
         }
         return true;
       }
-      O.exports = I = { IsJSONStr: H };
+      S.exports = I = { IsJSONStr: P };
     });
-    var N = c((b, E) => {
-      var h = S();
+    var L = l((E, M) => {
+      var b = h();
       function y(t, e) {
         var r, i, s = {};
         for (r in e)
@@ -68,19 +68,19 @@ var require_markdown_list_linter_min = __commonJS({
           return s;
         return false;
       }
-      function P(t, e) {
-        return h.IsJSONStr(t) && h.IsJSONStr(e) ? JSON.stringify(y(JSON.parse(t), JSON.parse(e))) : "Not Valid JSON String";
+      function q(t, e) {
+        return b.IsJSONStr(t) && b.IsJSONStr(e) ? JSON.stringify(y(JSON.parse(t), JSON.parse(e))) : "Not Valid JSON String";
       }
-      E.exports = b = P;
+      M.exports = E = q;
     });
-    var M = c((J, L) => {
-      L.exports = J = N();
+    var T = l((N, J) => {
+      J.exports = N = L();
     });
-    var j = c((n) => {
+    var w = l((n) => {
       "use strict";
       Object.defineProperty(n, "__esModule", { value: true });
-      n.constructErrorObject = n.compareJson = n.sortItemsAlphabetically = n.getAllListItems = n.getAllHeadings = void 0;
-      var _ = p(), R = M(), T = "&&SECTION_SEPARATOR&&", k = "&&ITEM_SEPARATOR&&", q = "false", C = (t) => {
+      n.buildFormattedMessage = n.constructErrorObject = n.compareJson = n.sortItemsAlphabetically = n.getAllListItems = n.getAllHeadings = void 0;
+      var _ = p(), C = T(), j = "&&SECTION_SEPARATOR&&", k = "&&ITEM_SEPARATOR&&", F = "false", D = (t) => {
         switch (t) {
           case _.MarkdownListType.Headings:
             return "Please correct the alphabetical order for these heading items";
@@ -88,47 +88,68 @@ var require_markdown_list_linter_min = __commonJS({
           default:
             return "Please correct the alphabetical order for these list items";
         }
-      }, D = (t) => t.reduce((e, r) => {
+      }, x = (t) => t.reduce((e, r) => {
         let [i] = r.slice(1);
         return e.find((o) => o === i) || e.push(i), e;
       }, []);
-      n.getAllHeadings = D;
-      var x = (t) => t.reduce((e, r) => {
+      n.getAllHeadings = x;
+      var z = (t) => t.reduce((e, r) => {
         let [i] = r.slice(2);
         return e.push(i), e;
       }, []);
-      n.getAllListItems = x;
-      var F = (t) => t.sort((e, r) => e.localeCompare(r));
-      n.sortItemsAlphabetically = F;
-      var z = (t, e) => {
-        let r = R(JSON.stringify({ ...e }), JSON.stringify({ ...t }));
-        return r === q ? void 0 : r;
-      };
-      n.compareJson = z;
+      n.getAllListItems = z;
+      var B = (t) => t.sort((e, r) => e.localeCompare(r));
+      n.sortItemsAlphabetically = B;
       var G = (t, e) => {
+        let r = C(JSON.stringify({ ...e }), JSON.stringify({ ...t }));
+        return r === F ? void 0 : r;
+      };
+      n.compareJson = G;
+      var K = (t, e) => {
         let r = "", i = JSON.parse(t);
         return Object.keys(i).reduce((s, o) => {
-          let d = s.find((f) => f === o), l = s[s.length - 1];
-          return d || s.push(o), l && Number(o) - Number(l) > 1 && (r += T), r += i[o] += k, s;
-        }, []), { type: e, message: C(e), details: r.split(T).map(function(s) {
+          let d = s.find((f) => f === o), c = s[s.length - 1];
+          return d || s.push(o), c && Number(o) - Number(c) > 1 && (r += j), r += i[o] += k, s;
+        }, []), { type: e, message: D(e), details: r.split(j).map(function(s) {
           return s.split(k).filter((o) => o);
         }) };
       };
-      n.constructErrorObject = G;
+      n.constructErrorObject = K;
+      var U = (t) => {
+        let e = "";
+        return e += `SUMMARY:
+` + t.summary + `
+`, t.errorObject && (e += `
+DETAILS:
+`), t.errorObject?.forEach((r) => {
+          e += r.message + `
+`, r.details.forEach((i, s) => {
+            e += "	Section #" + (s + 1) + `
+`, i.forEach((o) => {
+              e += "		" + o + `
+`;
+            }), e += `
+`;
+          });
+        }), e;
+      };
+      n.buildFormattedMessage = U;
     });
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.lintMarkdownList = void 0;
-    var B = require("fs");
-    var a = j();
+    var V = require("fs");
+    var a = w();
     var v = p();
-    var K = (t) => {
-      let e = [], r = /(?<=#{1,6} (.*)\n(?:(?!#).*\n)*)(?=[+*-] (.*(?:\n(?![#+*-]).+)?))/g, o = [...B.readFileSync(t, "utf8").replaceAll("\r", `
-`).matchAll(r)], d = (0, a.getAllHeadings)(o), l = (0, a.getAllListItems)(o), f = (0, a.sortItemsAlphabetically)([...d]), w = (0, a.sortItemsAlphabetically)([...l]), g = (0, a.compareJson)(d, f);
-      g && e.push((0, a.constructErrorObject)(g, v.MarkdownListType.Headings));
-      let A = (0, a.compareJson)(l, w);
-      return A && e.push((0, a.constructErrorObject)(A, v.MarkdownListType.ListItems)), e.length < 1 ? { summary: "No errors found" } : { summary: "Markdown list needs to be sorted", errorObject: e };
+    var Y = (t) => {
+      let e = [], r = /(?<=#{1,6} (.*)\n(?:(?!#).*\n)*)(?=[+*-] (.*(?:\n(?![#+*-]).+)?))/g, o = [...V.readFileSync(t, "utf8").replaceAll("\r", `
+`).matchAll(r)], d = (0, a.getAllHeadings)(o), c = (0, a.getAllListItems)(o), f = (0, a.sortItemsAlphabetically)([...d]), H = (0, a.sortItemsAlphabetically)([...c]), m = (0, a.compareJson)(d, f);
+      m && e.push((0, a.constructErrorObject)(m, v.MarkdownListType.Headings));
+      let g = (0, a.compareJson)(c, H);
+      g && e.push((0, a.constructErrorObject)(g, v.MarkdownListType.ListItems));
+      let A = e.length < 1 ? { summary: "No errors found" } : { summary: "Markdown list needs to be sorted", errorObject: e }, R = (0, a.buildFormattedMessage)(A);
+      return { ...A, formattedMessage: R };
     };
-    exports2.lintMarkdownList = K;
+    exports2.lintMarkdownList = Y;
   }
 });
 
@@ -2314,26 +2335,12 @@ var core_1 = require_core();
 async function runMarkdownListLinterAction() {
   const markdownFile = (0, core_1.getInput)("file");
   const failOnError = (0, core_1.getBooleanInput)("fail-on-error");
-  (0, core_1.debug)("outputBuilder1");
   if (!markdownFile) {
     (0, core_1.setFailed)("Markdown file not provided");
     return;
   }
   const result = (0, markdown_list_linter_1.lintMarkdownList)(markdownFile);
-  let outputBuilder = "";
-  outputBuilder += "SUMMARY:\n" + result.summary + "\n";
-  result.errorObject ? outputBuilder += "\nDETAILS:\n" : void 0;
-  result.errorObject?.forEach((error) => {
-    outputBuilder += error.message + "\n";
-    error.details.forEach((errorSections, index) => {
-      outputBuilder += "	Section #" + (index + 1) + "\n";
-      errorSections.forEach((errorItem) => {
-        outputBuilder += "		" + errorItem + "\n";
-      });
-      outputBuilder += "\n";
-    });
-  });
-  (0, core_1.info)(outputBuilder);
+  (0, core_1.info)(result.formattedMessage || "");
   (0, core_1.setOutput)("name", "markdown-list-linter");
   (0, core_1.setOutput)("summary", result.summary);
   (0, core_1.setOutput)("errors", result.errorObject);
