@@ -22,7 +22,8 @@ async function runMarkdownListLinterAction(): Promise<void> {
     info(result.formattedMessage || '')    
     setOutput("name", "markdown-list-linter");
     setOutput("summary", result.summary);
-    setOutput("errors", result.errorObject);    
+    setOutput("errors", result.errorObject);
+    setOutput("formattedMessage", result.formattedMessage);    
     
     if(!result.errorObject) {
       return

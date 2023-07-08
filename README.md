@@ -23,11 +23,12 @@ A report of the lint is printed in the step's console. Head over to the workflow
 
 The following output variables will be available in the subsequent steps. A little description of what they might contain mentioned below.
 
-| **Parameter** | **Description**                                        |
-| ------------- | ------------------------------------------------------ |
-| name          | Name of the package.                                   |
-| summary       | A short summary produced by the markdown list linter.  |
-| errors        | The error object produced by the markdown list linter. |
+| **Parameter**    | **Description**                                                       |
+| ---------------- | --------------------------------------------------------------------- |
+| name             | Name of the package.                                                  |
+| summary          | A short summary produced by the markdown list linter.                 |
+| errors           | The error object produced by the markdown list linter.                |
+| formattedMessage | The console-print-ready message produced by the markdown list linter. |
 
 ## Example usage
 
