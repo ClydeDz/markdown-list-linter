@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "markdown-list-linter": "0.1.0"
+    "markdown-list-linter": "^0.1.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.7",
