@@ -10,7 +10,7 @@
     "compile": "tsc --project tsconfig.json",
     "minify": "esbuild \"bin/action.js\" --bundle --platform=node --outfile=\"action.js\"",
     "build": "npm run compile && npm run minify",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Clyde D'Souza",
   "license": "MIT",
@@ -20,9 +20,12 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.7",
+    "@types/jest": "^29.5.2",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "esbuild": "^0.18.11",
+    "jest": "^29.6.1",
     "prettier": "^3.0.0",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
   }
 }

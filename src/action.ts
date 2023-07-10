@@ -37,7 +37,7 @@ export async function main(): Promise<void> {
     await runMarkdownListLinterAction()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    setFailed(error)
+    setFailed(error.message)
   }
 }
 
