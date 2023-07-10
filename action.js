@@ -139,15 +139,15 @@ DETAILS:
     exports2.lintMarkdownList = void 0;
     var V = require("fs");
     var a = w();
-    var v = p();
+    var H = p();
     var Y = (t) => {
       let e = [], r = /(?<=#{1,6} (.*)\n(?:(?!#).*\n)*)(?=[+*-] (.*(?:\n(?![#+*-]).+)?))/g, o = [...V.readFileSync(t, "utf8").replaceAll("\r", `
-`).matchAll(r)], d = (0, a.getAllHeadings)(o), c = (0, a.getAllListItems)(o), f = (0, a.sortItemsAlphabetically)([...d]), H = (0, a.sortItemsAlphabetically)([...c]), m = (0, a.compareJson)(d, f);
-      m && e.push((0, a.constructErrorObject)(m, v.MarkdownListType.Headings));
-      let g = (0, a.compareJson)(c, H);
-      g && e.push((0, a.constructErrorObject)(g, v.MarkdownListType.ListItems));
-      let A = e.length < 1 ? { summary: "No errors found" } : { summary: "Markdown list needs to be sorted", errorObject: e }, R = (0, a.buildFormattedMessage)(A);
-      return { ...A, formattedMessage: R };
+`).matchAll(r)], d = (0, a.getAllHeadings)(o), c = (0, a.getAllListItems)(o), f = (0, a.sortItemsAlphabetically)([...d]), R = (0, a.sortItemsAlphabetically)([...c]), m = (0, a.compareJson)(d, f);
+      m && e.push((0, a.constructErrorObject)(m, H.MarkdownListType.Headings));
+      let g = (0, a.compareJson)(c, R);
+      g && e.push((0, a.constructErrorObject)(g, H.MarkdownListType.ListItems));
+      let A = e.length < 1 ? { summary: "No errors found" } : { summary: "Markdown list needs to be sorted", errorObject: e }, v = (0, a.buildFormattedMessage)(A);
+      return { ...A, formattedMessage: v };
     };
     exports2.lintMarkdownList = Y;
   }
